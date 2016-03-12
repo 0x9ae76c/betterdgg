@@ -617,6 +617,10 @@
     color: white;
 }
 
+.bdgg-menu label:hover > input {
+    color: rgb(153,153,153);
+}
+
 .bdgg-menu label.checkbox {
     cursor: pointer;
     padding-left: 20px;

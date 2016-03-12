@@ -7,29 +7,6 @@
                     'Funnyguy17', 'Derugo', 'Fancysloth', 'dawigas', 'DerFaba'
                   ];
 
-    function _getToken() {
-        try {
-            var response = $.ajax(window.location.origin + '/profile/authentication', {
-                async: false,
-                timeout: 3000
-            });
-
-            if (response.status == 200) {
-                var tokenLinks = $(response.responseText).find("a[href^='/profile/authtoken/']");
-                if (tokenLinks.length > 0) {
-                    var href = tokenLinks[0].getAttribute('href');
-                    var matches;
-                    if (matches = /^\/profile\/authtoken\/(\w+)/.exec(href)) {
-                        return matches[1];
-                    }
-                } else {
-                    bdgg.alert.show(ALERT_MSG);
-                }
-            }
-        } finally {
-        }
-    }
-
     var _tid = null;
     var _hideAll = false;
     var _hideEvery = false;
@@ -59,7 +36,7 @@
             }
 
             if (CONTRIBUTORS.indexOf(this.user.username) > -1) {
-                icons += '<i class="icon-bdgg-contributor" title="Better Destiny.gg Contributor"/>';
+                icons += '<i class="icon-bdgg-contributor" title="Bestiny.gg Contributor"/>';
             }
 
             if (MOOBIES.indexOf(this.user.username) > -1) {

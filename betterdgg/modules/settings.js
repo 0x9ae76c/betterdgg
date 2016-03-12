@@ -63,20 +63,6 @@
             'type': 'boolean'
         },
 
-        'bdgg_flair_country_display': {
-            'name': 'Display my country flair',
-            'description': "Display your destiny.gg/profile nationality flag to others as flair",
-            'value': false,
-            'type': 'boolean'
-        },
-
-        'bdgg_flair_all_country_display': {
-            'name': "Show all country flairs",
-            'description': "Show everyone's flag flairs",
-            'value': true,
-            'type': 'boolean'
-        },
-
         'bdgg_filter_words': {
             'name': 'Custom ignore words',
             'description': 'Comma-separated list of words to filter messages from chat (case-insensitive)',
@@ -162,7 +148,7 @@
             },
             get: function(key, defValue) {
                 var value = localStorage.getItem(key);
-                if (value == null) {
+                if (value === null) {
                     value = defValue;
                     bdgg.settings.put(key, defValue);
                 } else if (SETTINGS[key] && SETTINGS[key].type == 'boolean') {

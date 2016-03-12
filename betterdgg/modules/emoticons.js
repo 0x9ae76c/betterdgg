@@ -50,7 +50,7 @@
             emote = emote.replace(/[^\w-]/, '_');
 
             //Disable Animated Emotes
-            if (ANIMATED.indexOf(emote) > -1 && bdgg.settings.get('bdgg_animate_disable') == true) {
+            if (ANIMATED.indexOf(emote) > -1 && bdgg.settings.get('bdgg_animate_disable')) {
                 return emote;
             }
 
@@ -69,7 +69,7 @@
 
             return s + '"></div>';
 
-        };
+        }
 
         return {
             all: [],
@@ -143,7 +143,7 @@
                 
                 var editEmoteList;
 
-                if (value == true){
+                if (value){
 
                     editEmoteList = EMOTICONS.concat(NEW).concat(SUBONLY).concat(ANIMATED)
                     .filter(function(e) { return baseEmotes.indexOf(e) == -1 })

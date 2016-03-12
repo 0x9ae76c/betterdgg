@@ -32,7 +32,7 @@
 
                 var fnGuiPush = destiny.chat.gui.push;
                 destiny.chat.gui.push = function(msg) {
-                    if (_filterRe != null && msg instanceof ChatUserMessage) {
+                    if (_filterRe !== null && msg instanceof ChatUserMessage) {
                         if (_filterRe.test(msg.message)) {
                             return;
                         }

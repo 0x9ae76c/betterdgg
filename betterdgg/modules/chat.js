@@ -16,7 +16,7 @@
             diff = Math.floor(diff / units[i].d);
         }
         return s;
-    };
+    }
 
     bdgg.chat = (function() {
         return {

@@ -6,7 +6,6 @@
                 var elem = $(fnTarget.apply(this, arguments));
 
                 // Let these formatters see the elements to avoid re-parsing html
-                bdgg.overrustle.wrapMessage(elem, this);
                 bdgg.emoticons.wrapMessage(elem, this);
                 bdgg.formatters.wrapMessage(elem, this);
 

@@ -12,11 +12,11 @@
         			if (key == 'bgg_passive_stalk')
         				bdgg.passivestalk.update(val)
         		})
-        		console.log(bdgg.settings.get('bgg_passive_stalk'))
+        		bdgg.passivestalk.update(bdgg.settings.get('bgg_passive_stalk'))
         	},
         	update: function(userList) {
         		var res = ''
-        		userList = userList.split(',')
+        		userList = userList.toLowerCase().replace(' ', '').split(',')
         		for (var i = 0; i < userList.length;i++)
         			res += template.replace('{}', userList[i]) + ','
         		res = res.substring(0, res.length - 1)

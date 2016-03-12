@@ -8,4 +8,5 @@ window.BetterDGG.filter.init();
 window.BetterDGG.security.init();
 window.BetterDGG.passivestalk.init();
 window.BetterDGG.theme.init();
+window.BetterDGG.firstrun.init();
 window.BetterDGG.chat.init();

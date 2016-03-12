@@ -11,16 +11,9 @@
 
     "permissions": [
         "*://*.destiny.gg/*",
-        "*://*.ustream.tv/*",
-        "*://*.overrustle.com/*",
-        "*://*.downthecrop.xyz/*"
+        "*://*.overrustle.com/*"
 
     ],
-
-    "background": {
-        "scripts": [ "lib/jsbn.js", "lib/xhr.js" ],
-        "persistent": false
-    },
 
     "content_scripts": [
         {

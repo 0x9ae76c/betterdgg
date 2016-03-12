@@ -82,6 +82,13 @@
             'description': 'Comma-separated list of words to filter messages from chat (case-insensitive)',
             'value': '',
             'type': 'string'
+        },
+
+        'bgg_passive_stalk': {
+            'name': 'Passive Stalk Targets OuO',
+            'description': 'Comma-separated list of chatters',
+            'value':'',
+            'type':'string'
         }
     };
 

@@ -1,21 +1,21 @@
 {
   "name": "betterdgg",
   "version": "1.3.3",
-  "description": "Better Destiny.gg",
+  "description": "Bestiny.gg",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/BryceMatthes/betterdgg"
+    "url": "https://github.com/0x9ae76c/betterdgg"
   },
-  "author": "downthecrop/9inevolt",
+  "author": "downthecrop/9inevolt/sweetie_belle now I guess, kys",
   "license": "Apache",
   "bugs": {
-    "url": "https://github.com/BryceMatthes/betterdgg/issues"
+    "url": "https://github.com/0x9ae76c/betterdgg/issues"
   },
-  "homepage": "https://github.com/BryceMatthes/betterdgg",
+  "homepage": "https://github.com/0x9ae76c/betterdgg",
   "devDependencies": {
     "gulp": "^3.8.8",
     "gulp-clean": "^0.3.1",

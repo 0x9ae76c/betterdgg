@@ -107,8 +107,8 @@
                 for (var key in SETTINGS) {
                     var s = SETTINGS[key];
                     s.key = key;
-                    s.value = bdgg.settings.get(s.key, s.value);
-                    bdgg.settings.add(s);
+                    s.value = bgg.settings.get(s.key, s.value);
+                    bgg.settings.add(s);
                 }
 
                 destiny.chat.gui.chatsettings.btn.on('click', bgg.settings.hide);

@@ -18,7 +18,7 @@
         return muteTimeRemaining;
     }
 
-    bdgg.chat = (function() {
+    bgg.chat = (function() {
         return {
             init: function() {
                 var fnChatMUTE = destiny.chat.onMUTE;

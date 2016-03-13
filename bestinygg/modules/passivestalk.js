@@ -1,5 +1,5 @@
-;(function(bdgg) {
-    bdgg.passivestalk = (function() {
+;(function(bgg) {
+    bgg.passivestalk = (function() {
     	var style, cssBody, template
     	cssBody = '{background-color:rgba(18,144,117,0.25);color:rgba(255,255,255,0.8);}'
     	template = '.user-msg[data-username="{}"]'
@@ -8,11 +8,11 @@
         		style = document.createElement('style')
         		style.type = 'text/css'
         		document.head.appendChild(style)
-        		bdgg.settings.addObserver(function(key, val) {
+        		bgg.settings.addObserver(function(key, val) {
         			if (key == 'bgg_passive_stalk')
-        				bdgg.passivestalk.update(val)
+        				bgg.passivestalk.update(val)
         		})
-        		bdgg.passivestalk.update(bdgg.settings.get('bgg_passive_stalk'))
+        		bgg.passivestalk.update(bgg.settings.get('bgg_passive_stalk'))
         	},
         	update: function(userList) {
         		var res = ''
@@ -29,4 +29,4 @@
         	}
         }
     })()
-}(window.BetterDGG = window.BetterDGG || {}))
+}(window.BestinyGG = window.BestinyGG || {}))

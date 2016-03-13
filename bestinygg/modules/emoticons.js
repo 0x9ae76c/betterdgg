@@ -89,8 +89,8 @@
                     }
                 });
 
-                bgg.emoticons.giveTabPriority(bdgg.settings.get('bgg_emote_tab_priority'));
-                bgg.emoticons.overrideEmotes(bdgg.settings.get('bgg_emote_override'));
+                bgg.emoticons.giveTabPriority(bgg.settings.get('bgg_emote_tab_priority'));
+                bgg.emoticons.overrideEmotes(bgg.settings.get('bgg_emote_override'));
                 bgg.settings.addObserver(function(key, value) {
                     if (key == 'bgg_emote_tab_priority') {
                         bgg.emoticons.giveTabPriority(value);

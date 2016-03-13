@@ -47,32 +47,32 @@ gulp.task('chrome:css', function() {
         code = code.toString();
         return code.replace(rImages, '$1chrome-extension://__MSG_@@extension_id__/$2');
     });
-    return gulp.src('./betterdgg/*.css')
+    return gulp.src('./bestinygg/*.css')
         .pipe(extPath)
-        .pipe(concat('betterdgg.css'))
+        .pipe(concat('bestinygg.css'))
         .pipe(gulp.dest('./build/chrome/'));
 });
 
 gulp.task('firefox:css', function() {
-    return gulp.src('./betterdgg/*.css')
+    return gulp.src('./bestinygg/*.css')
         .pipe(encode64)
-        .pipe(concat('betterdgg.css'))
+        .pipe(concat('bestinygg.css'))
         .pipe(gulp.dest('./build/firefox/data/'));
 });
 
 gulp.task('safari:css', function() {
-    return gulp.src('./betterdgg/*.css')
+    return gulp.src('./bestinygg/*.css')
         .pipe(encode64)
-        .pipe(concat('betterdgg.css'))
-        .pipe(gulp.dest('./dist/betterdgg.safariextension/'));
+        .pipe(concat('bestinygg.css'))
+        .pipe(gulp.dest('./dist/bestinygg.safariextension/'));
 });
 
 gulp.task('js', [ 'templates', 'version', 'content-scripts' ], function() {
     return gulp.src([ './vendor/**/*.js',
-            './betterdgg/modules/*.js', './build/templates.js', './build/version.js',
-            './betterdgg/*.js' ])
-        .pipe(concat('betterdgg.js'))
-        .pipe(header('var injectedBetterDGG = function() {\n'))
+            './bestinygg/modules/*.js', './build/templates.js', './build/version.js',
+            './bestinygg/*.js' ])
+        .pipe(concat('bestinygg.js'))
+        .pipe(header('var injectedBestinyGG = function() {\n'))
         .pipe(footer('\n};'))
         .pipe(gulp.dest('./build/'));
 });
@@ -80,11 +80,11 @@ gulp.task('js', [ 'templates', 'version', 'content-scripts' ], function() {
 gulp.task('templates', function() {
     var nameTemplate = map(function(code, filename) {
         code = code.toString();
-        var declaration = 'window.BetterDGG.templates.' + path.basename(filename, '.js') + ' = function(';
+        var declaration = 'window.BestinyGG.templates.' + path.basename(filename, '.js') + ' = function(';
         return code.replace(/^function template\(/, declaration);
     });
 
-    return gulp.src([ './betterdgg/templates/**/*.jade' ])
+    return gulp.src([ './bestinygg/templates/**/*.jade' ])
         .pipe(jade({ client: true }))
         .pipe(nameTemplate)
         .pipe(concat('templates.js'))
@@ -93,9 +93,9 @@ gulp.task('templates', function() {
 
 gulp.task('version', function() {
     var stream = source('version.js');
-    stream.write(';(function(bdgg) {');
-    stream.write('bdgg.version = "' + package.version + '";');
-    stream.write('}(window.BetterDGG = window.BetterDGG || {}));');
+    stream.write(';(function(bgg) {');
+    stream.write('bgg.version = "' + package.version + '";');
+    stream.write('}(window.BestinyGG = window.BestinyGG || {}));');
 
     return gulp.src('version.js')
         .pipe(stream)
@@ -103,7 +103,7 @@ gulp.task('version', function() {
 });
 
 gulp.task('content-scripts', function() {
-    return gulp.src([ './betterdgg/content-scripts/*.js' ])
+    return gulp.src([ './bestinygg/content-scripts/*.js' ])
         .pipe(concat('content.js'))
         .pipe(gulp.dest('./build/'));
 });
@@ -119,18 +119,18 @@ gulp.task('chrome:manifest', function() {
 });
 
 gulp.task('chrome', [ 'chrome:css', 'chrome:manifest', 'js' ], function() {
-    var assets = gulp.src([ './betterdgg/**/*.{gif,png}',
+    var assets = gulp.src([ './bestinygg/**/*.{gif,png}',
             './chrome/**/*', '!./chrome/inject.js', '!./chrome/manifest.json' ])
         .pipe(gulp.dest('./build/chrome/'));
-    var js = gulp.src([ './build/betterdgg.js', './chrome/inject.js', './build/content.js' ])
-        .pipe(concat('betterdgg.js'))
+    var js = gulp.src([ './build/bestinygg.js', './chrome/inject.js', './build/content.js' ])
+        .pipe(concat('bestinygg.js'))
         .pipe(gulp.dest('./build/chrome/'));
     return merge(assets, js);
 });
 
 gulp.task('chrome:zip', [ 'chrome' ], function() {
     gulp.src('./build/chrome/**/*')
-        .pipe(zip('betterdgg-chrome.zip'))
+        .pipe(zip('bestinygg-chrome.zip'))
         .pipe(gulp.dest('./dist/'));
 });
 
@@ -148,8 +148,8 @@ gulp.task('firefox', [ 'firefox:css', 'firefox:manifest', 'js' ], function() {
     var assets = gulp.src([ './firefox/**/*', '!./firefox/data/inject.js',
             '!./firefox/package.json' ])
         .pipe(gulp.dest('./build/firefox/'));
-    var js = gulp.src([ './build/betterdgg.js', './firefox/data/inject.js', './build/content.js' ])
-        .pipe(concat('betterdgg.js'))
+    var js = gulp.src([ './build/bestinygg.js', './firefox/data/inject.js', './build/content.js' ])
+        .pipe(concat('bestinygg.js'))
         .pipe(gulp.dest('./build/firefox/data/'));
     return merge(assets, js);
 });
@@ -157,7 +157,7 @@ gulp.task('firefox', [ 'firefox:css', 'firefox:manifest', 'js' ], function() {
 gulp.task('firefox:xpi', [ 'firefox' ], function() {
     run('mkdir -p ./dist && cd ./build/firefox && cfx xpi'
     + ' --update-url https://downthecrop.xyz/bbdgg/firefox/update.rdf'
-        + ' --output-file=../../dist/betterdgg.xpi').exec();
+        + ' --output-file=../../dist/bestinygg.xpi').exec();
 });
 
 gulp.task('safari:plist', function() {
@@ -168,18 +168,18 @@ gulp.task('safari:plist', function() {
             obj.CFBundleShortVersionString = package.version.replace(/^(\d+\.\d+)\..*/, '$1');
             return plist.build(obj);
         }))
-        .pipe(gulp.dest('./dist/betterdgg.safariextension/'));
+        .pipe(gulp.dest('./dist/bestinygg.safariextension/'));
 });
 
 gulp.task('safari', [ 'safari:css', 'safari:plist', 'js' ], function() {
-    var assets = gulp.src([ './betterdgg/**/*.{gif,png}',
+    var assets = gulp.src([ './bestinygg/**/*.{gif,png}',
             './safari/**/*', '!./safari/inject.js', '!./safari/Info.plist' ])
-        .pipe(gulp.dest('./dist/betterdgg.safariextension/'));
-    var js = gulp.src([ './build/betterdgg.js', './safari/inject.js', './build/content.js' ])
-        .pipe(concat('betterdgg.js'))
-        .pipe(gulp.dest('./dist/betterdgg.safariextension/'));
+        .pipe(gulp.dest('./dist/bestinygg.safariextension/'));
+    var js = gulp.src([ './build/bestinygg.js', './safari/inject.js', './build/content.js' ])
+        .pipe(concat('bestinygg.js'))
+        .pipe(gulp.dest('./dist/bestinygg.safariextension/'));
     merge(assets, js).on('end', function() {
-        console.log('Open ./dist/betterdgg.safariextension in Safari Extension Builder'
+        console.log('Open ./dist/bestinygg.safariextension in Safari Extension Builder'
             + ' to dist Safari extension');
     });
 });

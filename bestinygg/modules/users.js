@@ -1,4 +1,4 @@
-;(function(bdgg) {
+;(function(bgg) {
     var _users = {};
 
     function _initUsers() {
@@ -7,25 +7,25 @@
                 return;
             }
 
-            if (e.data.type == 'bdgg_users_refreshed') {
+            if (e.data.type == 'bgg_users_refreshed') {
                 _users = e.data.users;
             }
         };
         window.addEventListener('message', listener);
     }
 
-    bdgg.users = (function() {
+    bgg.users = (function() {
         return {
             init: function() {
                 _initUsers();
-                setTimeout(bdgg.users.refresh, 1000);
+                setTimeout(bgg.users.refresh, 1000);
             },
             get: function(username) {
                 return _users[username];
             },
             refresh: function() {
-                window.postMessage({type: 'bdgg_users_refresh'}, '*');
+                window.postMessage({type: 'bgg_users_refresh'}, '*');
             }
         };
     })();
-}(window.BetterDGG = window.BetterDGG || {}));
+}(window.BestinyGG = window.BestinyGG || {}));

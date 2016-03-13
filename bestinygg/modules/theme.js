@@ -1,11 +1,11 @@
-;(function(bdgg) {
-    bdgg.theme = (function() {
+;(function(bgg) {
+    bgg.theme = (function() {
         return {
             init: function() {
-                bdgg.theme.setLightTheme(bdgg.settings.get('bdgg_light_theme'));
-                bdgg.settings.addObserver(function(key, value) {
-                    if (key == 'bdgg_light_theme') {
-                        bdgg.theme.setLightTheme(value);
+                bgg.theme.setLightTheme(bgg.settings.get('bgg_light_theme'));
+                bgg.settings.addObserver(function(key, value) {
+                    if (key == 'bgg_light_theme') {
+                        bgg.theme.setLightTheme(value);
                     }
                 });
             },
@@ -18,4 +18,4 @@
             }
         }
     })();
-}(window.BetterDGG = window.BetterDGG || {}));
+}(window.BestinyGG = window.BestinyGG || {}));

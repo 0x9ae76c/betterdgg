@@ -1,18 +1,18 @@
-;(function(bdgg) {
-    bdgg.formatters = (function() {
+;(function(bgg) {
+    bgg.formatters = (function() {
         return {
             init: function() {
                 // deleted messages
                 destiny.chat.gui.removeUserMessages = function(username) {
-                    this.lines.children('div[data-username="'+username.toLowerCase()+'"]').addClass('bdgg-muted');
+                    this.lines.children('div[data-username="'+username.toLowerCase()+'"]').addClass('bgg-muted');
                 };
 
-                $(destiny.chat.gui.lines).on('click', '.bdgg-muted a.externallink', function(e) {
+                $(destiny.chat.gui.lines).on('click', '.bgg-muted a.externallink', function(e) {
                     return false;
                 });
 
                 // >greentext
-                var BDGGGreenTextFormatter = {
+                var BGGGreenTextFormatter = {
                     format: function(str, user) {
                         var loc = str.indexOf("&gt;")
                         if(loc === 0){
@@ -31,16 +31,16 @@
                         + _sr_url(url) + '">' + url + '</a>' + p3;
                 };
 
-                var bdggsubredditregex = /(^|\s)(\/r\/[A-Za-z]\w{1,20})($|\s|[\.\?!,])/g;
+                var bggsubredditregex = /(^|\s)(\/r\/[A-Za-z]\w{1,20})($|\s|[\.\?!,])/g;
 
-                var BDGGSubredditFormatter = {
+                var BGGSubredditFormatter = {
                     format: function(str, user) {
-                        return str.replace(bdggsubredditregex, _sr_replacer);
+                        return str.replace(bggsubredditregex, _sr_replacer);
                     }
                 }
 
-                destiny.chat.gui.formatters.push(BDGGGreenTextFormatter);
-                destiny.chat.gui.formatters.push(BDGGSubredditFormatter);
+                destiny.chat.gui.formatters.push(BGGGreenTextFormatter);
+                destiny.chat.gui.formatters.push(BGGSubredditFormatter);
             },
             wrapMessage: function(elem, message) {
                 elem.find('a[href]').each(function(i, a) {
@@ -57,4 +57,4 @@
             }
         };
     })();
-}(window.BetterDGG = window.BetterDGG || {}));
+}(window.BestinyGG = window.BestinyGG || {}));

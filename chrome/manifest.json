@@ -18,8 +18,8 @@
     "content_scripts": [
         {
             "matches": ["*://*.destiny.gg/*"],
-            "css": ["betterdgg.css"],
-            "js": ["betterdgg.js","lib/panscroll.js"],
+            "css": ["bestinygg.css"],
+            "js": ["bestinygg.js"],
             "all_frames":true
         }
     ],

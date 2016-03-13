@@ -1,69 +1,69 @@
-;(function(bdgg) {
+;(function(bgg) {
     var SETTINGS = {
-        'bdgg_emote_tab_priority': {
+        'bgg_emote_tab_priority': {
             'name': 'Prioritize emotes',
             'description': 'Prioritize emotes for tab completion',
             'value': true,
             'type': 'boolean'
         },
 
-        'bdgg_emote_override': {
+        'bgg_emote_override': {
             'name': 'Override emotes',
             'description': 'Override some emotes',
             'value': true,
             'type': 'boolean'
         },
 
-        'bdgg_disable_combos': {
+        'bgg_disable_combos': {
             'name': 'Disable All Combos',
             'description': 'Shut off combos',
             'value': false,
             'type': 'boolean'
         },
 
-        'bdgg_animate_disable': {
+        'bgg_animate_disable': {
             'name': 'Disable GIF Emotes',
             'description': 'Remove RaveDoge and the likes',
             'value': false,
             'type': 'boolean'
         },
 
-        'bdgg_text_disable': {
+        'bgg_text_disable': {
             'name': 'Disable Text Combos',
             'description': 'Remove OuO combos and the likes',
             'value': false,
             'type': 'boolean'
         },
 
-        'bdgg_light_theme': {
+        'bgg_light_theme': {
             'name': 'Light theme',
             'description': 'Light chat theme',
             'value': false,
             'type': 'boolean'
         },
 
-        'bdgg_convert_overrustle_links': {
+        'bgg_convert_overrustle_links': {
             'name': 'Convert stream links to overrustle',
             'description': 'Auto-converts stream links to use overrustle.com',
             'value': false,
             'type': 'boolean'
         },
 
-        'bdgg_flair_hide_all': {
+        'bgg_flair_hide_all': {
             'name': 'Hide all BetterD.GG flair',
             'description': 'Hide all Better Destiny.gg flairs',
             'value': false,
             'type': 'boolean'
         },
 
-        'bdgg_flair_hide_every': {
+        'bgg_flair_hide_every': {
             'name': 'Hide all D.GG flair',
             'description': 'Hide all Destiny.gg flairs',
             'value': false,
             'type': 'boolean'
         },
 
-        'bdgg_filter_words': {
+        'bgg_filter_words': {
             'name': 'Custom ignore words',
             'description': 'Comma-separated list of words to filter messages from chat (case-insensitive)',
             'value': '',
@@ -75,10 +75,17 @@
             'description': 'Comma-separated list of chatters',
             'value':'',
             'type':'string'
+        },
+
+        'bgg_user_ignore': {
+            'name': 'Users to ignore',
+            'description': 'List of users to ignore without removing their mentions',
+            'value':'',
+            'type':'string'
         }
     };
 
-    bdgg.settings = (function() {
+    bgg.settings = (function() {
         var _observers = [];
 
         var _notify = function(key, value) {
@@ -89,30 +96,30 @@
 
         return {
             init: function() {
-                $('#destinychat .chat-tools-wrap').prepend(bdgg.templates.menu_button());
+                $('#destinychat .chat-tools-wrap').prepend(bgg.templates.menu_button());
                 $('#chat-bottom-frame').append(
-                    $(bdgg.templates.menu()).append(
-                        bdgg.templates.menu_footer({version: bdgg.version})));
+                    $(bgg.templates.menu()).append(
+                        bgg.templates.menu_footer({version: bgg.version})));
 
-                $('#bdgg-settings-btn').on('click', function(e) {
-                    $('#bdgg-settings').toggle();
+                $('#bgg-settings-btn').on('click', function(e) {
+                    $('#bgg-settings').toggle();
                     $(this).toggleClass('active');
                     window.cMenu.closeMenus(destiny.chat.gui);
                 });
 
-                $('#bdgg-settings .close').on('click', function(e) {
-                    bdgg.settings.hide();
+                $('#bgg-settings .close').on('click', function(e) {
+                    bgg.settings.hide();
                 });
 
                 for (var key in SETTINGS) {
                     var s = SETTINGS[key];
                     s.key = key;
-                    s.value = bdgg.settings.get(s.key, s.value);
-                    bdgg.settings.add(s);
+                    s.value = bgg.settings.get(s.key, s.value);
+                    bgg.settings.add(s);
                 }
 
-                destiny.chat.gui.chatsettings.btn.on('click', bdgg.settings.hide);
-                destiny.chat.gui.userslist.btn.on('click', bdgg.settings.hide);
+                destiny.chat.gui.chatsettings.btn.on('click', bgg.settings.hide);
+                destiny.chat.gui.userslist.btn.on('click', bgg.settings.hide);
             },
             addObserver: function(obs) {
                 if (_observers.indexOf(obs) < 0) {
@@ -128,21 +135,21 @@
                 return false;
             },
             hide: function() {
-                $('#bdgg-settings').hide();
-                $('#bdgg-settings-btn').removeClass('active');
+                $('#bgg-settings').hide();
+                $('#bgg-settings-btn').removeClass('active');
             },
             add: function(setting) {
                 if (setting.type == 'string') {
-                    $('#bdgg-settings ul').append(bdgg.templates.menu_text({setting: setting}));
-                    $('#bdgg-settings input[type="text"]#' + setting.key).on('blur', function(e) {
+                    $('#bgg-settings ul').append(bgg.templates.menu_text({setting: setting}));
+                    $('#bgg-settings input[type="text"]#' + setting.key).on('blur', function(e) {
                         var value = $(this).val();
-                        bdgg.settings.put(setting.key, value);
+                        bgg.settings.put(setting.key, value);
                     });
                 } else { // boolean
-                    $('#bdgg-settings ul').append(bdgg.templates.menu_checkbox({setting: setting}));
-                    $('#bdgg-settings input[type="checkbox"]#' + setting.key).on('change', function(e) {
+                    $('#bgg-settings ul').append(bgg.templates.menu_checkbox({setting: setting}));
+                    $('#bgg-settings input[type="checkbox"]#' + setting.key).on('change', function(e) {
                         var value = $(this).prop('checked');
-                        bdgg.settings.put(setting.key, value);
+                        bgg.settings.put(setting.key, value);
                     });
                 }
             },
@@ -150,7 +157,7 @@
                 var value = localStorage.getItem(key);
                 if (value === null) {
                     value = defValue;
-                    bdgg.settings.put(key, defValue);
+                    bgg.settings.put(key, defValue);
                 } else if (SETTINGS[key] && SETTINGS[key].type == 'boolean') {
                     value = value === 'true';
                 }
@@ -163,4 +170,4 @@
             }
         };
     })();
-}(window.BetterDGG = window.BetterDGG || {}));
+}(window.BestinyGG = window.BestinyGG || {}));

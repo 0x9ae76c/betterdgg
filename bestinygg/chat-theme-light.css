@@ -225,21 +225,21 @@
 }
 
 .chat-theme-light .chat-menu label:hover,
-.chat-theme-light .bdgg-menu label:hover {
+.chat-theme-light .bgg-menu label:hover {
     color: black !important;
     text-decoration: underline !important;
 }
 
 .chat-theme-light .chat-menu .list-wrap,
 .chat-theme-light .user-tools > div,
-.chat-theme-light .bdgg-menu {
+.chat-theme-light .bgg-menu {
     background: #d0d0c9 !important;
     box-shadow: 0 2px 6px #666 !important;
 }
 
 .chat-theme-light .chat-menu h5,
 .chat-theme-light .user-tools h5,
-.chat-theme-light .bdgg-menu .toolbar {
+.chat-theme-light .bgg-menu .toolbar {
     background: #aaaaa0 !important;
     text-shadow: none !important;
 }
@@ -247,24 +247,24 @@
 .chat-theme-light .chat-menu h5,
 .chat-theme-light .user-tools h5,
 .chat-theme-light #chat-user-list h6,
-.chat-theme-light .bdgg-menu .toolbar h5,
-.chat-theme-light .bdgg-menu h6 {
+.chat-theme-light .bgg-menu .toolbar h5,
+.chat-theme-light .bgg-menu h6 {
     color: #333 !important;
 }
 
-.chat-theme-light .bdgg-stalk-msg {
+.chat-theme-light .bgg-stalk-msg {
     background: #ccc;
 }
 
-.chat-theme-light .bdgg-strim-msg {
+.chat-theme-light .bgg-strim-msg {
     background: #d4c8bc;
 }
 
-.chat-theme-light .chat-lines .bdgg-stalk-msg time {
+.chat-theme-light .chat-lines .bgg-stalk-msg time {
     display: inline-block !important;
     color: #888;
 }
 
-.chat-theme-light #bdgg-scroll-notify {
+.chat-theme-light #bgg-scroll-notify {
     background: rgba(25, 25, 25, 0.5);
 }

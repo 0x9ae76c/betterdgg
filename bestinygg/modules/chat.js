@@ -1,73 +1,72 @@
-;(function(bdgg) {
+;(function(bgg) {
 
     var muted = false;
     var muteMessage = "Bot didn't say how long you were muted, DaFellas";
     var lastMute = 0;
 
     function _timeDiff( tstart, tend ) {
-        var diff = Math.floor((tend - tstart) / 1000), units = [
-            { d: 60, l: "seconds" },
-            { d: 60, l: "minutes" }
+        var diff = Math.floor((tend - tstart) / 1000), TimeArray = [
+            { value: 60, name: "seconds" },
+            { value: 60, name: "minutes" }
         ];
 
-        var s = '';
-        for (var i = 0; i < units.length; ++i) {
-            s = (diff % units[i].d) + " " + units[i].l + " " + s;
-            diff = Math.floor(diff / units[i].d);
+        var muteTimeRemaining = '';
+        for (var i = 0; i < TimeArray.length; ++i) {
+            muteTimeRemaining = (diff % TimeArray[i].value) + " " + TimeArray[i].name + " " + s;
+            diff = Math.floor(diff / TimeArray[i].value);
         }
-        return s;
+        return muteTimeRemaining;
     }
 
-    bdgg.chat = (function() {
+    bgg.chat = (function() {
         return {
             init: function() {
                 var fnChatMUTE = destiny.chat.onMUTE;
 
-        var bdggChatMUTE = function(data) {
-            var bdggMUTE = fnChatMUTE.apply(this, arguments);
+        var bggChatMUTE = function(data) {
+            var bggMUTE = fnChatMUTE.apply(this, arguments);
             if (data.data.toLowerCase() == this.user.username.toLowerCase()){
                 muted = true;
                 console.log("You were muted at: "+_timeConverter(data.timestamp));
             }
             //console.log(data);
-            return bdggMUTE;
+            return bggMUTE;
         };
 
-        destiny.chat.onMUTE = bdggChatMUTE;
+        destiny.chat.onMUTE = bggChatMUTE;
 
         var fnChatMSG = destiny.chat.onMSG;
 
-        var bdggChatMSG = function(data) {
-            var bdggMessage = fnChatMSG.apply(this, arguments);
-
-            if (bdgg.settings.get('bdgg_disable_combos') === true){
+        var bggChatMSG = function(data) {
+            var bggMessage = fnChatMSG.apply(this, arguments);
+            if (bgg.settings.get('bgg_disable_combos') === true){
                 //I copied this from Dicedlemming it might suck but it works.
                 ChatEmoteMessage=function(emote,timestamp){return this.emotecount=-999,this.emotecountui=null,this}
             }
 
+           
             if (data.nick == "Bot" && muted === true){
                 console.log("Mute Message found");
                 lastMute = data.timestamp;
                 muteMessage = data.data;
                 muted = false;
             }
-
-            return bdggMessage;
+            return bggMessage;
         };
 
-        destiny.chat.onMSG = bdggChatMSG;
+        destiny.chat.onMSG = bggChatMSG;
 
         var fnChatERR = destiny.chat.onERR;
 
-        var bdggChatERR = function(data) {
-            var bdggERR = fnChatERR.apply(this, arguments);
+        var bggChatERR = function(data) {
+            var bggERR = fnChatERR.apply(this, arguments);
             if (data == "muted"){
-                //console.log(data);
-                //console.log(muteMessage);
-                var n = muteMessage.match(/[0-9]*[0-9]m/);  //find mute timestamp
-                if (n !== null){
-                    var nString = n.toString();
-                    var muteLength = nString.substr(0, nString.length-1);
+                console.log(data);
+                console.log(muteMessage);
+                var muteTimestamp = muteMessage.match(/[0-9]*[0-9]m/);  //find mute timestamp
+                if (muteTimestamp !== null){
+                    var muteTimestampString = muteTimestamp.toString();
+                    var muteLength = muteTimestampString.substr(0, muteTimestampString.length-1);
                     muteLength = parseInt(muteLength);
                     muteLength = lastMute+muteLength*60*1000; //Add seconds to timestamp
                     var newDate = new Date();
@@ -75,11 +74,11 @@
                     this.gui.push(new ChatInfoMessage("You are still muted for: "+_timeDiff(currentStamp, muteLength)));
                 }
             }
-            return bdggERR;
+            return bggERR;
         };
 
-        destiny.chat.onERR = bdggChatERR;
+        destiny.chat.onERR = bggChatERR;
             }
         }
     })();
-}(window.BetterDGG = window.BetterDGG || {}));
+}(window.BestinyGG = window.BestinyGG || {}));

@@ -1,18 +1,18 @@
-;(function(bdgg) {
-    bdgg.passivestalk = (function() {
+;(function(bgg) {
+    bgg.ignore = (function() {
     	var style, cssBody, template
-    	cssBody = '{background-color:rgba(18,144,117,0.25);color:rgba(255,255,255,0.8);}'
+    	cssBody = '{display:none;}'
     	template = '.user-msg[data-username="{}"]'
         return {
         	init: function() {
         		style = document.createElement('style')
         		style.type = 'text/css'
         		document.head.appendChild(style)
-        		bdgg.settings.addObserver(function(key, val) {
-        			if (key == 'bgg_passive_stalk')
-        				bdgg.passivestalk.update(val)
+        		bgg.settings.addObserver(function(key, val) {
+        			if (key == 'bgg_user_ignore')
+        				bgg.ignore.update(val)
         		})
-        		bdgg.passivestalk.update(bdgg.settings.get('bgg_passive_stalk'))
+        		bgg.ignore.update(bgg.settings.get('bgg_user_ignore'))
         	},
         	update: function(userList) {
         		var res = ''
@@ -29,4 +29,4 @@
         	}
         }
     })()
-}(window.BetterDGG = window.BetterDGG || {}))
+}(window.BestinyGG = window.BestinyGG || {}))

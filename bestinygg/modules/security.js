@@ -1,13 +1,13 @@
-;(function(bdgg) {
-    bdgg.security = (function() {
+;(function(bgg) {
+    bgg.security = (function() {
         function secureWrap(proto, target) {
             var fnTarget = proto[target];
             proto[target] = function() {
                 var elem = $(fnTarget.apply(this, arguments));
 
                 // Let these formatters see the elements to avoid re-parsing html
-                bdgg.emoticons.wrapMessage(elem, this);
-                bdgg.formatters.wrapMessage(elem, this);
+                bgg.emoticons.wrapMessage(elem, this);
+                bgg.formatters.wrapMessage(elem, this);
 
                 elem.find('applet, body, base, embed, frame, frameset,'
                     + 'head, html, iframe, link, meta, object, script, style, title,'
@@ -28,4 +28,4 @@
             }
         };
     })();
-}(window.BetterDGG = window.BetterDGG || {}));
+}(window.BestinyGG = window.BestinyGG || {}));

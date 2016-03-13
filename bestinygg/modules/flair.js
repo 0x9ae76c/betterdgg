@@ -1,4 +1,4 @@
-;(function(bdgg) {
+;(function(bgg) {
 
     var BOTS = [ 'Logs', 'OPbot', 'Bot', 'HighlightBot' ];
     var CONTRIBUTORS = [ '9inevolt', 'mellipelli' ];
@@ -12,13 +12,13 @@
     var _hideEvery = false;
     var _listener = null;
 
-    bdgg.flair = (function() {
-        destiny.UserFeatures['BDGG_CONTRIBUTOR'] = 'bdgg_contributor';
-        destiny.UserFeatures['BDGG_MOOBIE'] = 'bdgg_moobie';
+    bgg.flair = (function() {
+        destiny.UserFeatures['BGG_CONTRIBUTOR'] = 'bgg_contributor';
+        destiny.UserFeatures['BGG_MOOBIE'] = 'bgg_moobie';
         destiny.UserFeatures['BOT'] = '';
 
         var fnGetFeatureHTML = ChatUserMessage.prototype.getFeatureHTML;
-        var bdggGetFeatureHTML = function() {
+        var bggGetFeatureHTML = function() {
             var icons = fnGetFeatureHTML.apply(this, arguments);
 
             //This comes first because Bot wasn't getting his flair sometimes
@@ -36,26 +36,26 @@
             }
 
             if (CONTRIBUTORS.indexOf(this.user.username) > -1) {
-                icons += '<i class="icon-bdgg-contributor" title="Bestiny.gg Contributor"/>';
+                icons += '<i class="icon-bgg-contributor" title="Bestiny.gg Contributor"/>';
             }
 
             if (MOOBIES.indexOf(this.user.username) > -1) {
-                icons += '<i class="icon-bdgg-moobie" title="Movie Streamer"/>';
+                icons += '<i class="icon-bgg-moobie" title="Movie Streamer"/>';
             }
             
             return icons;
         };
 
-        ChatUserMessage.prototype.getFeatureHTML = bdggGetFeatureHTML;
+        ChatUserMessage.prototype.getFeatureHTML = bggGetFeatureHTML;
         return {
             init: function() {
-                bdgg.flair.hideAll(bdgg.settings.get('bdgg_flair_hide_all'));
+                bgg.flair.hideAll(bgg.settings.get('bgg_flair_hide_all'));
 
-                bdgg.settings.addObserver(function(key, value) {
-                    if (key == 'bdgg_flair_hide_all') {
-                        bdgg.flair.hideAll(value);
-                    } else if (key == 'bdgg_flair_hide_every') {
-                        bdgg.flair.hideEvery(value);
+                bgg.settings.addObserver(function(key, value) {
+                    if (key == 'bgg_flair_hide_all') {
+                        bgg.flair.hideAll(value);
+                    } else if (key == 'bgg_flair_hide_every') {
+                        bgg.flair.hideEvery(value);
                     }
                 });
             },
@@ -67,4 +67,4 @@
             }
         };
     })();
-}(window.BetterDGG = window.BetterDGG || {}));
+}(window.BestinyGG = window.BestinyGG || {}));

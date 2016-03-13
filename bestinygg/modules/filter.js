@@ -1,5 +1,5 @@
-;(function(bdgg) {
-    bdgg.filter = (function() {
+;(function(bgg) {
+    bgg.filter = (function() {
         var _filterRe;
 
         function _filterWords(value) {
@@ -23,9 +23,9 @@
 
         return {
             init: function() {
-                _filterWords(bdgg.settings.get('bdgg_filter_words'));
-                bdgg.settings.addObserver(function(key, value) {
-                    if (key == 'bdgg_filter_words') {
+                _filterWords(bgg.settings.get('bgg_filter_words'));
+                bgg.settings.addObserver(function(key, value) {
+                    if (key == 'bgg_filter_words') {
                         _filterWords(value);
                     }
                 });
@@ -43,4 +43,4 @@
             }
         }
     })();
-}(window.BetterDGG = window.BetterDGG || {}));
+}(window.BestinyGG = window.BestinyGG || {}));

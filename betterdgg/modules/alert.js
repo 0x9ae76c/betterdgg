@@ -1,18 +1,18 @@
-;(function(bdgg) {
-    bdgg.alert = (function() {
-        $('body').on('click', '#bdgg-alert .close', function() {
-            bdgg.alert.hide();
+;(function(bgg) {
+    bgg.alert = (function() {
+        $('body').on('click', '#bgg-alert .close', function() {
+            bgg.alert.hide();
         });
 
         return {
             show: function(message) {
-                bdgg.alert.hide();
-                $('#destinychat').append(bdgg.templates.alert({message: message}));
-                $('#bdgg-alert').show();
+                bgg.alert.hide();
+                $('#destinychat').append(bgg.templates.alert({message: message}));
+                $('#bgg-alert').show();
             },
             hide: function() {
-                $('#bdgg-alert').hide().remove();
+                $('#bgg-alert').hide().remove();
             }
         };
     })();
-}(window.BetterDGG = window.BetterDGG || {}));
+}(window.BestinyGG = window.BestinyGG || {}));

@@ -75,6 +75,13 @@
             'description': 'Comma-separated list of chatters',
             'value':'',
             'type':'string'
+        },
+
+        'bgg_user_ignore': {
+            'name': 'Users to ignore',
+            'description': 'List of users to ignore without removing their mentions',
+            'value':'',
+            'type':'string'
         }
     };
 

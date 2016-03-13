@@ -39,19 +39,38 @@
 
         var bggChatMSG = function(data) {
             var bggMessage = fnChatMSG.apply(this, arguments);
-
+           // var ignoreBool = false;
             if (bgg.settings.get('bgg_disable_combos') === true){
                 //I copied this from Dicedlemming it might suck but it works.
                 ChatEmoteMessage=function(emote,timestamp){return this.emotecount=-999,this.emotecountui=null,this}
             }
 
+            var ignoreList = bgg.settings.get('bgg_user_ignore');
+           
+            console.log(data.nick + ' Name data');
+            ignoreList = ignoreList.toLowerCase().split(' ').join('').split(',')
+             console.log(ignoreList);
+            for (var i = 0; i < ignoreList.length; i++) {
+            	if (ignoreList[i] == data.nick) {
+                    console.log('shit meme tbh fam')
+            		//ignoreBool = true;
+                    bggMessage = ''
+            	}
+            }
+            //console.log(ignoreBool);
             if (data.nick == "Bot" && muted === true){
                 console.log("Mute Message found");
                 lastMute = data.timestamp;
                 muteMessage = data.data;
                 muted = false;
             }
-
+           // if (ignoreBool = true) {
+              //  console.log(bggMessage);
+               // console.log(data.nick);  
+            //	return;
+          //  } else {
+           // 	return bggMessage;
+          //  }
             return bggMessage;
         };
 

@@ -7,6 +7,7 @@ window.BestinyGG.users.init();
 window.BestinyGG.filter.init();
 window.BestinyGG.security.init();
 window.BestinyGG.passivestalk.init();
+window.BestinyGG.ignore.init();
 window.BestinyGG.theme.init();
 window.BestinyGG.firstrun.init();
 window.BestinyGG.chat.init();

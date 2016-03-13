@@ -40,12 +40,12 @@
         var bdggChatMSG = function(data) {
             var bdggMessage = fnChatMSG.apply(this, arguments);
 
-            if (bdgg.settings.get('bdgg_disable_combos') == true){
+            if (bdgg.settings.get('bdgg_disable_combos') === true){
                 //I copied this from Dicedlemming it might suck but it works.
                 ChatEmoteMessage=function(emote,timestamp){return this.emotecount=-999,this.emotecountui=null,this}
             }
 
-            if (data.nick == "Bot" && muted == true){
+            if (data.nick == "Bot" && muted === true){
                 console.log("Mute Message found");
                 lastMute = data.timestamp;
                 muteMessage = data.data;
@@ -65,7 +65,7 @@
                 //console.log(data);
                 //console.log(muteMessage);
                 var n = muteMessage.match(/[0-9]*[0-9]m/);  //find mute timestamp
-                if (n != null){
+                if (n !== null){
                     var nString = n.toString();
                     var muteLength = nString.substr(0, nString.length-1);
                     muteLength = parseInt(muteLength);

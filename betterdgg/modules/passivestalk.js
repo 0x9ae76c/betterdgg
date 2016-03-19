@@ -13,11 +13,11 @@
 			sendstr = str.trim()
 			if (match = sendstr.match(/(ps|passivestalk)\s(\w+)/)) {
 				var r = bdgg.settings.get('bgg_passive_stalk')
-				r = r.replace(/\s/, '').split(',')
-				if (r === ['']) r = []
+				r = r.split(' ').join('').split(',')
+				if (r.length === 1 && r[0] === '') r = []
 				r[r.length] = match[2]
 				r = r.filter(function(val, idx, self) {
-					return self.indexOf(val) == idx
+					return self.indexOf(val) === idx
 				})
 				bgg.settings.put('bgg_passive_stalk', r.join(','))
 				document.querySelector('#bgg_passive_stalk').value = bgg.settings.get('bgg_passive_stalk')

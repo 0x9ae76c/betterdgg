@@ -23,7 +23,7 @@
 
         var ANIMATED = [ "CuckCrab", "SourPls", "RaveDoge" ];
 
-        var OVERRIDES = [ "SoSad", "SpookerZ", "Kappa", "OhKrappa", "DappaKappa", "Klappa" ];
+        var OVERRIDES = [ "SoSad", "SpookerZ", "Kappa", "OhKrappa", "DappaKappa", "Klappa", "LIES" ];
 
         var TEXT = [ "OuO", "XD", "xD" ];
 
@@ -178,6 +178,9 @@
 
                 if (override) {
                     wrapped.find('.chat-emote').addClass('bdgg-chat-emote-override');
+                    if (wrapped.find('.chat-emote-LIES')[0] !== undefined) {
+                    	wrapped.find('.chat-emote-LIES')[0].outerHTML = '<a href="http://hillshire.tv/atlasesque"><div title="LIES" class="chat-emote chat-emote-LIES">LIES </div></a>'
+                    }
                 }
             }
         }

@@ -179,7 +179,7 @@
                 if (override) {
                     wrapped.find('.chat-emote').addClass('bdgg-chat-emote-override');
                     if (wrapped.find('.chat-emote-LIES')[0] !== undefined) {
-                    	wrapped.find('.chat-emote-LIES')[0].outerHTML = '<a href="http://hillshire.tv/atlasesque"><div title="LIES" class="chat-emote chat-emote-LIES">LIES </div></a>'
+                    	wrapped.find('.chat-emote-LIES')[0].outerHTML = '<a href="http://hillshire.tv/atlasesque" target="_blank"><div title="LIES" class="chat-emote chat-emote-LIES">LIES </div></a>'
                     }
                 }
             }

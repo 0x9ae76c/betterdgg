@@ -1,12 +1,11 @@
-// TODO: find a cleaner way to load this
-window.BetterDGG.settings.init();
-window.BetterDGG.formatters.init();
-window.BetterDGG.emoticons.init();
-window.BetterDGG.flair.init();
-window.BetterDGG.users.init();
-window.BetterDGG.filter.init();
-window.BetterDGG.security.init();
-window.BetterDGG.passivestalk.init();
-window.BetterDGG.theme.init();
-window.BetterDGG.firstrun.init();
-window.BetterDGG.chat.init();
+window.BetterDGG.settings.init()
+
+for (var module in window.BetterDGG) {
+	if (module !== 'settings' && window.BetterDGG[module].init) {
+		try {
+			window.BetterDGG[module].init()
+		} catch (e) {
+			console.error(e)
+		}
+	}
+}
